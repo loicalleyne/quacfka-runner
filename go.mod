@@ -8,7 +8,7 @@ require (
 	github.com/TFMV/filewalker v0.0.0-20250224073810-b5e8b71e02ff
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/apache/arrow-go/v18 v18.1.1-0.20250116162745-f533d2066dee
-	github.com/loicalleyne/couac v0.5.1
+	github.com/loicalleyne/couac v0.5.2
 	github.com/valyala/gorpc v0.0.0-20160519171614-908281bef774
 )
 
