@@ -45,8 +45,10 @@ func main() {
 	go feedRequests()
 	// Register RPC types
 	registerTypes()
+	// Linux -> Unix socket, other platforms TCP socket
 	switch runtime.GOOS {
 	case "linux":
+		// Delete any orphan socket file
 		_, err := os.Stat(*addr)
 		if err == nil {
 			os.Remove(*addr)
