@@ -151,3 +151,12 @@ type Request struct {
 	QueriesNames     []string
 }
 ```
+
+## 💫 Show your support
+
+Give a ⭐️ if this project helped you!
+Feedback and PRs welcome.
+
+## Licence
+
+Quacfka-Runner is released under the Apache 2.0 license. See [LICENCE](LICENCE)
