@@ -24,8 +24,8 @@ var (
 	reqChan     chan rpc.Request
 	addr        = kingpin.Flag("address", "socket address").Default("./gorpc-sock.unix").Envar("RUNNER_SOCKET").Short('r').String()
 	server      *gorpc.Server
-	configPath  = kingpin.Flag("config", "Path to config").Default("./config/server.toml").String()
-	parquetPath = kingpin.Flag("parquetpath", "path to parquets").Default("./parquet/").Envar("PARQUET_PATH").Short('p').String()
+	configPath  = kingpin.Flag("config", "Path to config").Default("/usr/local/bin/quacfka-service/config/server.toml").String()
+	parquetPath = kingpin.Flag("parquetpath", "path to parquets").Default("/usr/local/bin/quacfka-service/parquet/").Envar("PARQUET_PATH").Short('p').String()
 	bucketName  = kingpin.Flag("bucket", "GCS bucket name").Default("bucket").Envar("GCS_BUCKET").Short('b').String()
 )
 
