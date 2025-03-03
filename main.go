@@ -32,19 +32,18 @@ var (
 func main() {
 	// Parse flags
 	kingpin.Parse()
-	err := config.ReadServer(*configPath, &conf)
-	if err != nil {
-		log.Fatalf("could not read config in %s : %v\n", *configPath, err)
-	}
+
 	*parquetPath = strings.TrimSuffix(*parquetPath, "/") + "/"
 	if _, err := os.Stat(*parquetPath); err != nil {
 		log.Fatalf("parquet path error for %s : %v\n", *parquetPath, err)
 	}
 	log.Printf("watching path: %s\nbucket: %s\n", *parquetPath, *bucketName)
 	go sweep(context.Background(), *parquetPath, *bucketName)
+
 	reqChan = make(chan rpc.Request, 100)
 	defer close(reqChan)
 	go feedRequests()
+	// Register RPC types
 	registerTypes()
 	switch runtime.GOOS {
 	case "linux":
@@ -55,6 +54,12 @@ func main() {
 		server = gorpc.NewUnixServer(*addr, handleQueryRequests)
 		log.Printf("starting Unix server on %s\n", *addr)
 	default:
+		err := config.ReadServer(*configPath, &conf)
+		if err != nil {
+			log.Printf("could not read config in %s : %v\n", *configPath, err)
+			conf.RPC.Host = "127.0.0.1"
+			conf.RPC.Port = 9090
+		}
 		*addr = fmt.Sprintf("%s:%d", conf.RPC.Host, conf.RPC.Port)
 		server = gorpc.NewTCPServer(*addr, handleQueryRequests)
 		log.Printf("starting TCP server on %s\n", *addr)

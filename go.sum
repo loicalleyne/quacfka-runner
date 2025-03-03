@@ -124,6 +124,8 @@ github.com/klauspost/cpuid/v2 v2.2.9 h1:66ze0taIn2H33fBvCkXuv9BmCwDfafmiIVpKV9kK
 github.com/klauspost/cpuid/v2 v2.2.9/go.mod h1:rqkxqrZ1EhYM9G+hXH7YdowN5R5RGN6NK4QwQ3WMXF8=
 github.com/loicalleyne/couac v0.5.1 h1:HoVHUiNTuBDHpU+weSzs3/VuBHmMMsjk8oNiNzdXfAE=
 github.com/loicalleyne/couac v0.5.1/go.mod h1:QNw/G/YVYkdr9RRNwdlxPY6S8UIfg9aM4UjZXhvyvSQ=
+github.com/loicalleyne/couac v0.5.2 h1:++2AXKYur9/cmQMQWxXdjsmTHMUs7WDwJourGlUgWVE=
+github.com/loicalleyne/couac v0.5.2/go.mod h1:QNw/G/YVYkdr9RRNwdlxPY6S8UIfg9aM4UjZXhvyvSQ=
 github.com/minio/asm2plan9s v0.0.0-20200509001527-cdd76441f9d8 h1:AMFGa4R4MiIpspGNG7Z948v4n35fFGB3RR3G/ry4FWs=
 github.com/minio/asm2plan9s v0.0.0-20200509001527-cdd76441f9d8/go.mod h1:mC1jAcsrzbxHt8iiaC+zU4b1ylILSosueou12R++wfY=
 github.com/minio/c2goasm v0.0.0-20190812172519-36a3d3bbc4f3 h1:+n/aFZefKZp7spd8DFdX7uMikMLXX4oubIzJF4kv/wI=
