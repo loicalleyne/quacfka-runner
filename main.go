@@ -120,12 +120,13 @@ func handleQueryRequests(clientAddr string, r any) any {
 }
 
 func validateRequest(r rpc.Request) rpc.Response {
-	if r.Path == "" {
+	if _, err := os.Stat(r.Path); err != nil || r.Path == "" {
 		return invalidRequest(r, fmt.Errorf("invalid path"))
 	}
 	if r.ExportPath == "" {
 		return invalidRequest(r, fmt.Errorf("invalid export path"))
 	}
+	r.ExportPath = strings.TrimSuffix(r.ExportPath, "/")
 	if len(r.ExecQueries) != len(r.ExecQueriesNames) {
 		return invalidRequest(r, fmt.Errorf("execqueries and execqueriesnames mismatch"))
 	}

@@ -21,6 +21,13 @@ Flags:
 ```
 
 ## QuafkaRunner RPC 
+Runner will use a Unix socket on Linux and TCP socket on other platforms. 
+Set TCP address and port in config TOML file.
+```toml
+[rpc]
+host = "127.0.0.1"
+port = 9090
+```
 ### RPC Usage
 ```go
 	gorpc.RegisterType(rpc.Request{})
@@ -77,6 +84,7 @@ Flags:
 			if err != nil {
 				log.Printf("dPath error: %v\n", err)
 			}
+            // Requests should be validated first with Call, then the request in the validated Response sent with Send.
 			resp, err := client.Call(rpc.Request{
 				Type:             rpc.REQUEST_VALIDATE,
 				Path:             path,
