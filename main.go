@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"syscall"
 	"time"
 
@@ -24,7 +25,7 @@ var (
 	addr        = kingpin.Flag("address", "socket address").Default("./gorpc-sock.unix").Envar("RUNNER_SOCKET").Short('r').String()
 	server      *gorpc.Server
 	configPath  = kingpin.Flag("config", "Path to config").Default("./config/server.toml").String()
-	parquetPath = kingpin.Flag("parquetpath", "path to parquets, with '/' at the end").Default("./parquet/").Envar("PARQUET_PATH").Short('p').String()
+	parquetPath = kingpin.Flag("parquetpath", "path to parquets").Default("./parquet/").Envar("PARQUET_PATH").Short('p').String()
 	bucketName  = kingpin.Flag("bucket", "GCS bucket name").Default("bucket").Envar("GCS_BUCKET").Short('b').String()
 )
 
@@ -33,9 +34,12 @@ func main() {
 	kingpin.Parse()
 	err := config.ReadServer(*configPath, &conf)
 	if err != nil {
-		log.Printf("could not read config %v\n", err)
+		log.Fatalf("could not read config in %s : %v\n", *configPath, err)
 	}
-
+	*parquetPath = strings.TrimSuffix(*parquetPath, "/") + "/"
+	if _, err := os.Stat(*parquetPath); err != nil {
+		log.Fatalf("parquet path error for %s : %v\n", *parquetPath, err)
+	}
 	log.Printf("watching path: %s\nbucket: %s\n", *parquetPath, *bucketName)
 	go sweep(context.Background(), *parquetPath, *bucketName)
 	reqChan = make(chan rpc.Request, 100)
