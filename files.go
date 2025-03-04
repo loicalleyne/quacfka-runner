@@ -87,11 +87,11 @@ func processDir(path string) {
 		log.Printf("error: %v\n", err)
 		return
 	}
-	log.Println(path, "removed")
+	// log.Println(path, "removed")
 }
 
 func gcsUpload(ctx context.Context, gcsClient *storage.Client, f processedFile, sinkbucket string, size int64) {
-	log.Printf("Upload START %s %s\n", f.uri, formatBytes(size))
+	// log.Printf("Upload START %s %s\n", f.uri, formatBytes(size))
 	// transfer parquet file to sink bucket
 	bkt := gcsClient.Bucket(sinkbucket)
 	file, err := os.Open(f.path)
@@ -113,5 +113,5 @@ func gcsUpload(ctx context.Context, gcsClient *storage.Client, f processedFile, 
 	if err := os.Remove(f.path); err != nil {
 		log.Printf("Upload ERROR %s : %v\n", f.path, err)
 	}
-	log.Printf("Upload DONE %s\n", f.uri)
+	// log.Printf("Upload DONE %s\n", f.uri)
 }
