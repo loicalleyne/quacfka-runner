@@ -1,13 +1,12 @@
 module github.com/loicalleyne/quacfka-runner
 
 go 1.24.0
-
 require (
 	cloud.google.com/go/storage v1.51.0
 	github.com/BurntSushi/toml v1.4.0
 	github.com/TFMV/filewalker v0.0.0-20250224073810-b5e8b71e02ff
 	github.com/alecthomas/kingpin/v2 v2.4.0
-	github.com/apache/arrow-go/v18 v18.2.0-rc1
+	github.com/apache/arrow-go/v18 v18.2.0
 	github.com/loicalleyne/couac v0.5.2
 	github.com/valyala/gorpc v0.0.0-20160519171614-908281bef774
 )
