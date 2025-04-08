@@ -8,7 +8,7 @@ require (
 	github.com/TFMV/filewalker v0.0.0-20250224073810-b5e8b71e02ff
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/apache/arrow-go/v18 v18.2.0
-	github.com/loicalleyne/couac v0.5.2
+	github.com/loicalleyne/couac v0.5.3
 	github.com/valyala/gorpc v0.0.0-20160519171614-908281bef774
 )
 
@@ -24,7 +24,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.51.0 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.51.0 // indirect
 	github.com/alecthomas/units v0.0.0-20211218093645-b94a6e3cc137 // indirect
-	github.com/apache/arrow-adbc/go/adbc v1.4.0 // indirect
+	github.com/apache/arrow-adbc/go/adbc v1.5.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cncf/xds/go v0.0.0-20250121191232-2f005788dc42 // indirect
 	github.com/envoyproxy/go-control-plane/envoy v1.32.4 // indirect
