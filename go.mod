@@ -3,7 +3,7 @@ module github.com/loicalleyne/quacfka-runner
 go 1.24.0
 
 require (
-	cloud.google.com/go/storage v1.56.1
+	cloud.google.com/go/storage v1.56.2
 	github.com/BurntSushi/toml v1.5.0
 	github.com/TFMV/filewalker v0.0.0-20250224073810-b5e8b71e02ff
 	github.com/alecthomas/kingpin/v2 v2.4.0
