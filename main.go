@@ -131,6 +131,7 @@ func handleQueryRequests(clientAddr string, r any) any {
 	case rpc.REQUEST_RUN:
 		if len(reqChan) >= conf.QueueSize {
 			log.Println("runner busy", "request", req.Path)
+			reqChan <- req
 			return rpc.Response{
 				Request: req,
 				Status:  rpc.RESPONSE_BUSY,
