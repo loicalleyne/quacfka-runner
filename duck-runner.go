@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path"
 	"runtime"
 	"strings"
 	"time"
@@ -23,7 +24,8 @@ func RunPartitionedQueries(d rpc.Request) error {
 	if err != nil {
 		return fmt.Errorf("file stat error %w", err)
 	}
-	if f.Size() < 1024*1024 {
+	// 12KB duckdb size means empty DB
+	if f.Size() <= 1024*12 {
 		return fmt.Errorf("file is only %v", f.Size())
 	}
 	var driverPath string
@@ -125,7 +127,7 @@ func RunPartitionedQueries(d rpc.Request) error {
 					if err != nil {
 						return fmt.Errorf("query %d error: %s", i, query)
 					}
-					log.Printf("query %d %s-%s-%s %s:00 : %v secs\n", i, year, month, day, hour, time.Since(tick).Seconds())
+					log.Printf("%s - query %d %s-%s-%s %s:00 : %v secs\n", path.Base(d.Path), i, year, month, day, hour, time.Since(tick).Seconds())
 				}
 			}
 		}

@@ -6,3 +6,5 @@ port = 9090
 enabled = false
 host = "127.0.0.1"
 port = 5051
+
+queue_size = 15

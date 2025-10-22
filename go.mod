@@ -9,7 +9,9 @@ require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/apache/arrow-go/v18 v18.2.0-rc0
 	github.com/loicalleyne/couac v0.5.2
+	github.com/sirupsen/logrus v1.9.3
 	github.com/valyala/gorpc v0.0.0-20160519171614-908281bef774
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
 
 require (

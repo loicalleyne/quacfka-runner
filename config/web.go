@@ -1,7 +1,7 @@
 package config
 
 type Web struct {
-	Host    string
-	Port    int
-	Enabled bool
+	Host    string `json:"host" toml:"host"`
+	Port    int    `json:"port" toml:"port"`
+	Enabled bool   `json:"enabled" toml:"enabled"`
 }

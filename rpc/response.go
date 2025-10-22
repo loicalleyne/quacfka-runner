@@ -5,6 +5,7 @@ const (
 	RESPONSE_NOT_AUTHORIZED       = 1
 	RESPONSE_REQUEST_TYPE_INVALID = 2
 	RESPONSE_RUNNER_ERROR         = 3
+	RESPONSE_BUSY                 = 4
 )
 
 // The type Response is a struct containing an rpc response.

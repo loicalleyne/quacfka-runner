@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
+	"io"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -12,11 +12,14 @@ import (
 	"syscall"
 	"time"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/loicalleyne/quacfka-runner/config"
 	"github.com/loicalleyne/quacfka-runner/rpc"
 
 	"github.com/alecthomas/kingpin/v2"
 	"github.com/valyala/gorpc"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 var (
@@ -32,6 +35,18 @@ var (
 func main() {
 	// Parse flags
 	kingpin.Parse()
+	lumberjackLogger := &lumberjack.Logger{
+		Filename:   "./quacfka-runner.log",
+		MaxSize:    200, // megabytes
+		MaxBackups: 5,
+		MaxAge:     28,   // days
+		Compress:   true, // disabled by default
+	}
+	mw := io.MultiWriter(os.Stdout, lumberjackLogger)
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp: true,
+	})
+	log.SetOutput(mw)
 
 	*parquetPath = strings.TrimSuffix(*parquetPath, "/") + "/"
 	if _, err := os.Stat(*parquetPath); err != nil {
@@ -114,6 +129,14 @@ func handleQueryRequests(clientAddr string, r any) any {
 		log.Println("ping received", req)
 		return pong(req)
 	case rpc.REQUEST_RUN:
+		if len(reqChan) >= conf.QueueSize {
+			log.Println("runner busy", "request", req.Path)
+			return rpc.Response{
+				Request: req,
+				Status:  rpc.RESPONSE_BUSY,
+				Error:   fmt.Errorf("runner busy"),
+			}
+		}
 		reqChan <- req
 		return successfulRequest(req)
 	case rpc.REQUEST_VALIDATE:
