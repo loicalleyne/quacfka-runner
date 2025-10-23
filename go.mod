@@ -7,8 +7,8 @@ require (
 	github.com/BurntSushi/toml v1.4.0
 	github.com/TFMV/filewalker v0.0.0-20250224073810-b5e8b71e02ff
 	github.com/alecthomas/kingpin/v2 v2.4.0
-	github.com/apache/arrow-go/v18 v18.2.0-rc0
-	github.com/loicalleyne/couac v0.5.2
+	github.com/apache/arrow-go/v18 v18.2.0
+	github.com/loicalleyne/couac v0.5.3
 	github.com/sirupsen/logrus v1.9.3
 	github.com/valyala/gorpc v0.0.0-20160519171614-908281bef774
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
@@ -26,7 +26,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.51.0 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.51.0 // indirect
 	github.com/alecthomas/units v0.0.0-20211218093645-b94a6e3cc137 // indirect
-	github.com/apache/arrow-adbc/go/adbc v1.4.0 // indirect
+	github.com/apache/arrow-adbc/go/adbc v1.5.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cncf/xds/go v0.0.0-20250121191232-2f005788dc42 // indirect
 	github.com/envoyproxy/go-control-plane/envoy v1.32.4 // indirect
@@ -63,7 +63,7 @@ require (
 	golang.org/x/net v0.35.0 // indirect
 	golang.org/x/oauth2 v0.28.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 	golang.org/x/time v0.10.0 // indirect
 	golang.org/x/tools v0.30.0 // indirect
