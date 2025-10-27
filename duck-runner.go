@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"path"
 	"runtime"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/loicalleyne/quacfka-runner/rpc"
 
@@ -29,15 +30,19 @@ func RunPartitionedQueries(d rpc.Request) error {
 		return fmt.Errorf("file is only %v", f.Size())
 	}
 	var driverPath string
-	switch runtime.GOOS {
-	case "darwin":
-		driverPath = "/usr/local/lib/libduckdb.so.dylib"
-	case "linux":
-		driverPath = "/usr/local/lib/libduckdb.so"
-	case "windows":
-		h, _ := os.UserHomeDir()
-		driverPath = h + "\\Downloads\\libduckdb-windows-amd64\\duckdb.dll"
-	default:
+	if os.Getenv("DUCKDB_DRIVER_PATH") != "" {
+		driverPath = os.Getenv("DUCKDB_DRIVER_PATH")
+	} else {
+		switch runtime.GOOS {
+		case "darwin":
+			driverPath = "/usr/local/lib/libduckdb.so.dylib"
+		case "linux":
+			driverPath = "/usr/local/lib/libduckdb.so"
+		case "windows":
+			h, _ := os.UserHomeDir()
+			driverPath = h + "\\Downloads\\libduckdb-windows-amd64\\duckdb.dll"
+		default:
+		}
 	}
 	db, err := couac.NewDuck(couac.WithPath(d.Path), couac.WithDriverPath(driverPath))
 	if err != nil {

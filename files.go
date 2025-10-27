@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 
 	"cloud.google.com/go/storage"
 	"github.com/TFMV/filewalker"
